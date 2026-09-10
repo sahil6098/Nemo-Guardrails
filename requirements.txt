@@ -9,3 +9,7 @@ langchain-text-splitters
 faiss-cpu
 
 streamlit
+
+fastapi
+uvicorn[standard]
+python-dotenv

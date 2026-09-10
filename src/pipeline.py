@@ -39,7 +39,7 @@ def run_pipeline(message: str, groq_key: str, guard_model: str, chat_model: str,
 
     # ── LLM ① — NeMo input rails ─────────────────────────────────────────────
     def _nemo_worker():
-        llm   = ChatGroq(api_key=groq_key, model=guard_model, temperature=0)
+        llm   = ChatGroq(api_key=groq_key, model=guard_model, temperature=0.5)
         rails = build_rails(llm)
         async def _run():
             return await rails.generate_async(
@@ -91,7 +91,7 @@ def run_pipeline(message: str, groq_key: str, guard_model: str, chat_model: str,
     gen_error = None
     answer    = ""
     try:
-        llm  = ChatGroq(api_key=groq_key, model=chat_model, temperature=0)
+        llm  = ChatGroq(api_key=groq_key, model=chat_model, temperature=0.5)
         resp = llm.invoke([
             {"role": "system", "content": HR_SYSTEM_PROMPT.format(context=context_text)},
             {"role": "user",   "content": message},

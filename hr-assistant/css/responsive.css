@@ -1,0 +1,355 @@
+/**
+ * responsive.css — HR Assistant Responsive Breakpoints
+ * =====================================================
+ * Mobile-first responsive rules.
+ * Targets: 320px, 375px, 390px, 414px, 768px, 1024px, 1440px+
+ */
+
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   MOBILE — Up to 768px
+   ═══════════════════════════════════════════════════════════════════════════ */
+@media (max-width: 768px) {
+
+    /* Header */
+    .header {
+        padding: 0 var(--space-3);
+        height: 56px;
+    }
+
+    .header-hamburger {
+        display: inline-flex;
+    }
+
+    .brand-name {
+        font-size: var(--font-size-md);
+    }
+
+    .brand-badge {
+        display: none;
+    }
+
+    .header-status {
+        display: none;
+    }
+
+    .header-help-btn {
+        display: none;
+    }
+
+    /* Layout */
+    .app-layout {
+        height: calc(100dvh - 56px);
+        margin-top: 56px;
+    }
+
+    /* Sidebar — off-screen drawer */
+    .sidebar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        width: 300px;
+        max-width: 85vw;
+        transform: translateX(-100%);
+        z-index: 500;
+        box-shadow: none;
+        transition: transform var(--transition-slow) cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .sidebar.sidebar-open {
+        transform: translateX(0);
+        box-shadow: var(--shadow-xl);
+    }
+
+    .sidebar-close {
+        display: inline-flex;
+    }
+
+    .sidebar-overlay {
+        display: block;
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.4);
+        z-index: 400;
+        opacity: 0;
+        visibility: hidden;
+        transition: all var(--transition-normal);
+    }
+
+    .sidebar-overlay.overlay-visible {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    /* Prevent body scroll when sidebar is open */
+    body.sidebar-active {
+        overflow: hidden;
+    }
+
+    /* Main content — full width */
+    .main-content {
+        width: 100%;
+    }
+
+    /* Welcome screen */
+    .welcome-screen {
+        padding: var(--space-4) var(--space-3);
+        align-items: flex-start;
+        padding-top: var(--space-8);
+    }
+
+    .welcome-icon svg {
+        width: 44px;
+        height: 44px;
+    }
+
+    .welcome-title {
+        font-size: var(--font-size-xl);
+    }
+
+    .welcome-subtitle {
+        font-size: var(--font-size-base);
+    }
+
+    /* Quick questions — 2 columns on small screens */
+    .quick-questions-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--space-2);
+    }
+
+    .quick-question-card {
+        padding: var(--space-3);
+    }
+
+    .qq-icon {
+        font-size: 1.25rem;
+    }
+
+    .qq-text {
+        font-size: var(--font-size-xs);
+    }
+
+    /* Chat messages */
+    .chat-messages {
+        padding: var(--space-4) var(--space-3);
+    }
+
+    .user-bubble {
+        max-width: 85%;
+    }
+
+    .message-body {
+        max-width: 85%;
+    }
+
+    /* Message actions always visible on mobile */
+    .message-actions {
+        opacity: 1;
+    }
+
+    .conversation-actions {
+        opacity: 1;
+    }
+
+    /* Chat composer */
+    .chat-composer {
+        padding: var(--space-3);
+        padding-bottom: max(var(--space-3), env(safe-area-inset-bottom));
+    }
+
+    .composer-inner {
+        padding: var(--space-2) var(--space-3);
+    }
+
+    .composer-hint {
+        font-size: 10px;
+    }
+
+    /* Toast */
+    .toast-container {
+        left: var(--space-3);
+        right: var(--space-3);
+        bottom: var(--space-3);
+    }
+
+    .toast {
+        max-width: 100%;
+    }
+
+    /* Disclaimer */
+    .disclaimer {
+        font-size: 10px;
+        padding: var(--space-1) var(--space-3);
+    }
+
+    /* Profile menu — full width on mobile */
+    .profile-menu {
+        position: fixed;
+        top: auto;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        width: 100%;
+        border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+        transform: translateY(100%);
+    }
+    .profile-menu.visible {
+        transform: translateY(0);
+    }
+}
+
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   VERY SMALL SCREENS — Up to 375px
+   ═══════════════════════════════════════════════════════════════════════════ */
+@media (max-width: 375px) {
+    .quick-questions-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .welcome-hero {
+        margin-bottom: var(--space-6);
+    }
+
+    .welcome-title {
+        font-size: var(--font-size-lg);
+    }
+
+    .brand-logo {
+        display: none;
+    }
+}
+
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   TABLET — 769px to 1024px
+   ═══════════════════════════════════════════════════════════════════════════ */
+@media (min-width: 769px) and (max-width: 1024px) {
+    :root {
+        --sidebar-width: 240px;
+    }
+
+    .quick-questions-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   DESKTOP — 1025px and up
+   ═══════════════════════════════════════════════════════════════════════════ */
+@media (min-width: 1025px) {
+    .header-hamburger {
+        display: none;
+    }
+
+    .sidebar-close {
+        display: none;
+    }
+
+    .sidebar-overlay {
+        display: none !important;
+    }
+}
+
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   LARGE DESKTOP — 1440px+
+   ═══════════════════════════════════════════════════════════════════════════ */
+@media (min-width: 1440px) {
+    :root {
+        --sidebar-width: 300px;
+        --chat-max-width: 860px;
+        --composer-max-width: 860px;
+    }
+
+    .header {
+        padding: 0 var(--space-8);
+    }
+
+    .chat-messages {
+        padding: var(--space-8) var(--space-6);
+    }
+}
+
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   TOUCH TARGETS — ensure minimum 44px on touch devices
+   ═══════════════════════════════════════════════════════════════════════════ */
+@media (hover: none) and (pointer: coarse) {
+    .icon-btn {
+        min-width: 44px;
+        min-height: 44px;
+    }
+
+    .sidebar-link {
+        min-height: 44px;
+    }
+
+    .conversation-link {
+        min-height: 44px;
+    }
+
+    .action-btn {
+        min-height: 36px;
+        padding: var(--space-2) var(--space-3);
+    }
+
+    .conv-action-btn {
+        min-width: 36px;
+        min-height: 36px;
+    }
+
+    .quick-question-card {
+        min-height: 44px;
+    }
+
+    .send-btn {
+        min-width: 44px;
+        min-height: 44px;
+    }
+
+    .retry-btn {
+        min-height: 44px;
+    }
+
+    .sources-toggle {
+        min-height: 44px;
+    }
+
+    .new-conversation-btn {
+        min-height: 44px;
+    }
+}
+
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   PRINT
+   ═══════════════════════════════════════════════════════════════════════════ */
+@media print {
+    .sidebar,
+    .header,
+    .chat-composer,
+    .message-actions,
+    .disclaimer,
+    .toast-container {
+        display: none !important;
+    }
+
+    .main-content {
+        margin: 0;
+        height: auto;
+        overflow: visible;
+    }
+
+    .chat-messages {
+        overflow: visible;
+        height: auto;
+    }
+
+    .message {
+        break-inside: avoid;
+        page-break-inside: avoid;
+    }
+}
